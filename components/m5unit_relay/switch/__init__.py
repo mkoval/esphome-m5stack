@@ -16,7 +16,7 @@ DEPENDENCIES = ['m5unit_relay']
 CONF_M5UNIT_RELAY_CHANNEL = 'channel'
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
-M5UnitRelaySwitch = m5unit_ns.class_('M5UnitRelayChannel',
+M5UnitRelaySwitch = m5unit_ns.class_('M5UnitRelayComponentSwitch',
     switch.Switch,
     cg.Component,
     cg.Parented.template(M5UnitRelayComponent)

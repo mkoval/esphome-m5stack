@@ -3,19 +3,19 @@
 namespace esphome {
 namespace m5unit {
 
-M5UnitRelayChannel::M5UnitRelayChannel()
+M5UnitRelayComponentSwitch::M5UnitRelayComponentSwitch()
     : channel_{0}
 {
 }
 
-void M5UnitRelayChannel::set_channel(uint8_t channel)
+void M5UnitRelayComponentSwitch::set_channel(uint8_t channel)
 {
-    channel_ = channel;
+    this->channel_ = channel;
 }
 
-void M5UnitRelayChannel::write_state(bool state) override;
+void M5UnitRelayComponentSwitch::write_state(bool state) override;
 {
-    parent_->write_state(channel_, state);
+    this->parent_->write_state(this->channel_, state);
     publish_state(state);
 }
 

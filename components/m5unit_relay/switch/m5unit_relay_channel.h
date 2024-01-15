@@ -7,7 +7,7 @@
 namespace esphome {
 namespace m5unit {
 
-class M5UnitRelayChannel 
+class M5UnitRelayComponentSwitch
     : public switch_::Switch
     , public Component
     , public Parented<M5UnitRelay>

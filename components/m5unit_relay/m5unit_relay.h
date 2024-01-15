@@ -8,7 +8,7 @@ namespace m5unit {
 
 class M5UnitRelayChannel;
 
-class M5UnitRelay 
+class M5UnitRelayComponent 
     : public i2c::I2CDevice
     , public Component
 {

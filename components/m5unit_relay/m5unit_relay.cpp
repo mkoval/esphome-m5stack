@@ -14,7 +14,7 @@ M5UnitRelay::M5UnitRelay()
 {
 }
 
-void M5UnitRelay::setup()
+void M5UnitRelayComponent::setup()
 {
     ESP_LOGI(TAG, "probing I2C reg %#04x for firmware", REG_FIRMWARE);
     if (this->read_register(REG_FIRMWARE, &this->firmware, 1) != i2c::ERROR_OK) {
@@ -25,7 +25,7 @@ void M5UnitRelay::setup()
     ESP_LOGI(TAG, "found firmware version: %04x", this->firmware);
 }
 
-void M5UnitRelay::write_state(uint8_t channel, bool state)
+void M5UnitRelayComponent::write_state(uint8_t channel, bool state)
 {
     const uint8_t mask = 1 << channel;
     this->value = (this->value & ~mask) | mask;
@@ -37,7 +37,7 @@ void M5UnitRelay::write_state(uint8_t channel, bool state)
     }
 }
 
-void M5UnitRelay::dump_config()
+void M5UnitRelayComponent::dump_config()
 {
     ESP_LOGCONFIG(TAG, "I2C address: %#04x", this->address_);
     ESP_LOGCONFIG(TAG, "I2C firmware register: %#04x", REG_FIRMWARE);
