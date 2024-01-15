@@ -55,6 +55,6 @@ async def to_code(config):
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
 
-    for i, sensor_config in enumerate(config[CONF_SENSORS]):
-        sensor_obj = cg.Pvariable(conf[CONF_ID], var.get_sensor(i))
-        await sensor.register_sensor(sensor_obj, sensor_config)
+    for channel, sensor_config in enumerate(config[CONF_SENSORS]):
+        sensor_var = cg.Pvariable(sensor_config[CONF_ID], var.get_sensor(channel))
+        await sensor.register_sensor(sensor_var, sensor_config)
