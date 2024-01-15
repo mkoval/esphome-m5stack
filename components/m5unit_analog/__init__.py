@@ -15,8 +15,7 @@ from esphome.const import (
 
 CODEOWNERS = ['@mkoval']
 DEPENDENCIES = [
-    'i2c',
-    'sensor'
+    'i2c'
 ]
 MULTI_CONF = True
 
