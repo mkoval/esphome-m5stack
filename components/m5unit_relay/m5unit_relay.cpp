@@ -11,13 +11,7 @@ static constexpr uint8_t REG_FIRMWARE_VERSION = 0xFE;
 static constexpr uint8_t REG_I2C_ADDRESS = 0xFF;
 
 M5UnitRelay::M5UnitRelay()
-    : switches_ {
-        { this, 0 },
-        { this, 1 },
-        { this, 2 },
-        { this, 3 },
-      }
-    , state_{0x00}
+    : state_{0x00}
 {
 }
 

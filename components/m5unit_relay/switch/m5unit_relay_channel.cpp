@@ -6,12 +6,6 @@
 namespace esphome {
 namespace m5unit {
 
-M5UnitRelayChannel::M5UnitRelayChannel(M5UnitRelay *parent, size_t channel)
-    : parent_{parent}
-    , channel_{channel}
-{
-}
-
 void M5UnitRelayChannel::write_state(bool state)
 {
     this->parent_->set_channel_state(this->channel_, state);
