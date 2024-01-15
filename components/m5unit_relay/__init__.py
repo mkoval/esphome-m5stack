@@ -12,7 +12,7 @@ from esphome.const import (
 CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [
     'i2c',
-    'm5unit_relay_channel',
+    'switch',
 ]
 MULTI_CONF = True
 
