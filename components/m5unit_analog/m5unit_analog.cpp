@@ -6,7 +6,6 @@ namespace m5unit {
 
 static const char *TAG = "m5unit.analog";
 
-// From 
 static constexpr uint8_t REG_CURRENT = 0x20;
 static constexpr uint8_t REG_CAL_CURRENT = 0x20;
 static constexpr uint8_t REG_FIRMWARE_VERSION = 0xFE;
