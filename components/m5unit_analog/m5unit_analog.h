@@ -18,7 +18,7 @@ public:
 
     uint8_t get_firmware_version() const { return this->firmware; }
 
-    sensor::Sensor *get_sensor(size_t channel) const { return &this->sensors_[channel]; }
+    sensor::Sensor *get_sensor(size_t channel) { return &this->sensors_[channel]; }
 
     void setup() override;
     void dump_config() override;
