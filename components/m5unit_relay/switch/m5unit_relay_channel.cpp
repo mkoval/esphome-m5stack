@@ -13,7 +13,7 @@ void M5UnitRelayComponentSwitch::set_channel(uint8_t channel)
     this->channel_ = channel;
 }
 
-void M5UnitRelayComponentSwitch::write_state(bool state) override;
+void M5UnitRelayComponentSwitch::write_state(bool state)
 {
     this->parent_->write_state(this->channel_, state);
     publish_state(state);
