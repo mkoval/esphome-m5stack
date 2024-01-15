@@ -24,12 +24,9 @@ void M5UnitRelay::setup()
     ESP_LOGI(TAG, "found firmware version: %04x", this->firmware);
 }
 
-void M5UnitRelay::write_state(bool state)
+void M5UnitRelay::write_state(uint8_t channel, bool state)
 {
-    // TODO: split into separate switch components
-    for (size_t channel = 0; i < NUM_CHANNELS; i++) {
-        set_state(channel, state);
-    }
+    set_state(channel, state);
 
     if (this->write_register(REG_CONTROL, &this->_value) != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "failed to write to I2C reg %#04x", REG_CONTROL);
@@ -43,7 +40,6 @@ void M5UnitRelay::write_state(bool state)
 void M5UnitRelay::dump_config()
 {
     i2c::I2CDevice::dump_config();
-    switch_::Switch::dump_config();
     ESP_LOGCONFIG(TAG, "I2C firmware register: %#04x", REG_FIRMWARE);
     ESP_LOGCONFIG(TAG, "I2C control register: %#04x", REG_CONTROL);
 }
