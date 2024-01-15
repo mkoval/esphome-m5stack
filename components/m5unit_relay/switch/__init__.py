@@ -6,8 +6,6 @@ from esphome.const import (
     CONF_TYPE,
 )
 
-from .. import M5UnitRelay
-
 """
 AUTO_LOAD = [ 'switch' ]
 DEPENDENCIES = [ 'm5unit_relay' ]
@@ -18,7 +16,6 @@ m5unit_ns = cg.esphome_ns.namespace('m5unit')
 M5UnitRelayChannel= m5unit_ns.class_('M5UnitRelayChannel',
     cg.Component,
     switch.Switch,
-    cg.Parented(M5UnitRelay),
 )
 
 CONFIG_SCHEMA = (
