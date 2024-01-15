@@ -3,19 +3,16 @@
 namespace esphome {
 namespace m5unit {
 
-M5UnitRelayComponentSwitch::M5UnitRelayComponentSwitch()
-    : channel_{0}
+M5UnitRelayChannel::M5UnitRelayChannel(M5UnitRelay *parent, size_t channel)
+    : parent_{parent}
+    , channel_{channel}
 {
 }
 
-void M5UnitRelayComponentSwitch::set_channel(uint8_t channel)
+void M5UnitRelayChannel::write_state(bool state)
 {
-    this->channel_ = channel;
-}
-
-void M5UnitRelayComponentSwitch::write_state(bool state)
-{
-    this->parent_->write_state(this->channel_, state);
+    this->parent_->set_channel_state(this->channel_, state);
+    this->parent_->write_state();
     publish_state(state);
 }
 

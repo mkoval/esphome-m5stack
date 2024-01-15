@@ -11,32 +11,24 @@ from .. import (
     M5UnitRelayComponent,
 )
 
-DEPENDENCIES = ['m5unit_relay']
-
-CONF_M5UNIT_RELAY_CHANNEL = 'channel'
+AUTO_LOAD = [ 'switch' ]
+CODEOWNERS = [ '@mkoval' ]
+DEPENDENCIES = [ 'm5unit_relay' ]
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
-M5UnitRelayComponentSwitch= m5unit_ns.class_('M5UnitRelayComponentSwitch',
+M5UnitRelayChannel= m5unit_ns.class_('M5UnitRelayChannel',
     switch.Switch,
     cg.Component,
-    cg.Parented.template(M5UnitRelayComponent)
 )
 
 CONFIG_SCHEMA = (
-    switch.switch_schema(
-        M5UnitRelayComponentSwitch,
-        entity_category=ENTITY_CATEGORY_CONFIG,
-    )
+    switch.switch_schema(M5UnitRelayChannel)
     .extend(cv.COMPONENT_SCHEMA)
     .extend({
-        cv.GenerateID(): cv.declare_id(M5UnitRelayComponentSwitch),
-        cv.GenerateID(CONF_M5UNIT_RELAY_ID): cv.use_id(M5UnitRelayComponent),
-        cv.Required(CONF_M5UNIT_RELAY_CHANNEL): cv.int_range(min=0, max=3),
+        cv.GenerateID(): cv.declare_id(M5UnitRelayChannel),
     })
 )
 
 async def to_code(config):
-    parent = await cg.get_variable(config[CONF_M5UNIT_RELAY_ID])
     var = await switch.new_switch(config)
     await cg.register_component(var, config)
-    await cg.register_parented(var, parent)

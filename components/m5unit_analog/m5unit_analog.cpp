@@ -24,13 +24,6 @@ M5UnitAnalog::M5UnitAnalog()
 
 void M5UnitAnalog::setup()
 {
-    if (this->read_register(REG_FIRMWARE_VERSION, &this->firmware, 1) != i2c::ERROR_OK) {
-        ESP_LOGE(TAG, "failed to read fw version from addr %#04x reg %#04x",
-            this->address_, REG_FIRMWARE_VERSION);
-        this->mark_failed();
-        return;
-    }
-
     uint8_t address;
     if (this->read_register(REG_I2C_ADDRESS, &address, 1) != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "failed to read I2C address from addr %#04x reg %#04x",
@@ -43,11 +36,23 @@ void M5UnitAnalog::setup()
         this->mark_failed();
         return;
     }
+
+    if (this->read_register(REG_FIRMWARE_VERSION, &this->firmware, 1) != i2c::ERROR_OK) {
+        ESP_LOGE(TAG, "failed to read fw version from addr %#04x reg %#04x",
+            this->address_, REG_FIRMWARE_VERSION);
+        this->mark_failed();
+        return;
+    }
+    ESP_LOGI(TAG, "Setup complete");
 }
 
 void M5UnitAnalog::dump_config()
 {
-    ESP_LOGCONFIG(TAG, "I2C address: %#04x", this->address_);
+    ESP_LOGCONFIG(TAG, "M5Unit Analog:");
+    ESP_LOGCONFIG(TAG, "  I2C address: %#04x", this->address_);
+    ESP_LOGCONFIG(TAG, "  I2C address register: %#04x", REG_I2C_ADDRESS);
+    ESP_LOGCONFIG(TAG, "  I2C firmware version register: %#04x", REG_FIRMWARE_VERSION);
+    ESP_LOGCONFIG(TAG, "  I2C current register: %#04x", REG_CURRENT);
 }
 
 void M5UnitAnalog::update()
