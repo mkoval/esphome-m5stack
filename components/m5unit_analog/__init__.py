@@ -42,7 +42,7 @@ CONFIG_SCHEMA = (
                     state_class=STATE_CLASS_MEASUREMENT,
                 )
                 .extend({
-                    cv.GenerateID(): cv.declare_id(Sensor)
+                    cv.GenerateID(): cv.declare_id(sensor.Sensor)
                 })
             ),
             cv.Length(min=4, max=4)
