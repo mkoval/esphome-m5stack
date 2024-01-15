@@ -6,12 +6,9 @@
 namespace esphome {
 namespace m5unit {
 
-// Forward declaration of children, to break circular dependency
-class M5UnitChannel;
-
 class M5UnitRelay
     : public i2c::I2CDevice
-    , public PollingComponent
+    , public Component 
 {
 public:
     static constexpr size_t NUM_CHANNELS = 4;

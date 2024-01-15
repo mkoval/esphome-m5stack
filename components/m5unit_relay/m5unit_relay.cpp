@@ -36,7 +36,10 @@ void M5UnitRelay::setup()
         this->mark_failed();
         return;
     }
-    ESP_LOGI(TAG, "Setup complete");
+
+    // Initialize all channels to "off"
+    state_ = 0x00;
+    write_state();
 }
 
 void M5UnitRelay::dump_config()

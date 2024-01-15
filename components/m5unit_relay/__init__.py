@@ -9,11 +9,10 @@ from esphome.const import (
     CONF_SWITCHES
 )
 
+from .switch import to_code as switch_to_code
+
 CODEOWNERS = [ '@mkoval' ]
-DEPENDENCIES = [
-    'i2c',
-    'switch',
-]
+DEPENDENCIES = [ 'i2c' ]
 MULTI_CONF = True
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
@@ -48,5 +47,4 @@ async def to_code(config):
     await i2c.register_i2c_device(var, config)
 
     for channel, switch_config in enumerate(config[CONF_SWITCHES]):
-        switch_var = cg.Pvariable(switch_config[CONF_ID], var.get_switch(channel))
-        await switch.register_switch(switch_var, switch_config)
+        await switch_to_code(parent=var, channel=channel, config=switch_config)
