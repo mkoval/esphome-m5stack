@@ -9,7 +9,7 @@ from esphome.const import (
     CONF_SWITCHES
 )
 
-from .switch import to_code as switch_to_code
+from .channel import to_code as channel_to_code
 
 CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [ 'i2c' ]
@@ -47,4 +47,4 @@ async def to_code(config):
     await i2c.register_i2c_device(var, config)
 
     for channel, switch_config in enumerate(config[CONF_SWITCHES]):
-        await switch_to_code(parent=var, channel=channel, config=switch_config)
+        await channel_to_code(parent=var, channel=channel, config=switch_config)
