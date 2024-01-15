@@ -13,6 +13,8 @@ class M5UnitRelayComponentSwitch
     , public Parented<M5UnitRelayComponent>
 {
 public:
+    M5UnitRelayComponentSwitch();
+
     void set_channel(uint8_t channel);
 
     void write_state(bool state) override;
