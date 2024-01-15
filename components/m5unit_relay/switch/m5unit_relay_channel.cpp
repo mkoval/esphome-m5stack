@@ -1,5 +1,8 @@
 #include "m5unit_relay_channel.h"
 
+// Only include in cpp file to break circular dependency
+#include "../m5unit_relay.h"
+
 namespace esphome {
 namespace m5unit {
 

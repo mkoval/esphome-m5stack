@@ -6,14 +6,8 @@ from esphome.const import (
     CONF_TYPE,
 )
 
-from .. import (
-    CONF_M5UNIT_RELAY_ID,
-    M5UnitRelayComponent,
-)
-
 AUTO_LOAD = [ 'switch' ]
 CODEOWNERS = [ '@mkoval' ]
-DEPENDENCIES = [ 'm5unit_relay' ]
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
 M5UnitRelayChannel= m5unit_ns.class_('M5UnitRelayChannel',

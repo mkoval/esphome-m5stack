@@ -10,7 +10,10 @@ from esphome.const import (
 )
 
 CODEOWNERS = [ '@mkoval' ]
-DEPENDENCIES = [ 'i2c' ]
+DEPENDENCIES = [
+    'i2c',
+    'm5unit_relay_channel',
+]
 MULTI_CONF = True
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
