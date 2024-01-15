@@ -9,7 +9,7 @@ static constexpr size_t NUM_CHANNELS = 4;
 static constexpr uint8_t REG_CONTROL = 0x10;
 static constexpr uint8_t REG_FIRMWARE = 0xFE;
 
-M5UnitRelay::M5UnitRelay()
+M5UnitRelayComponent::M5UnitRelayComponent()
     : value{0x00}
 {
 }

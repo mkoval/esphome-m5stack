@@ -13,7 +13,7 @@ class M5UnitRelayComponent
     , public Component
 {
 public:
-    M5UnitRelay();
+    M5UnitRelayComponent();
 
     void setup() override;
     void dump_config() override;
