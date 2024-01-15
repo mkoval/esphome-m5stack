@@ -13,10 +13,9 @@ from esphome.const import (
     UNIT_AMPERE,
 )
 
-CODEOWNERS = ['@mkoval']
-DEPENDENCIES = [
-    'i2c'
-]
+AUTO_LOAD = [ 'sensor' ]
+CODEOWNERS = [ '@mkoval' ]
+DEPENDENCIES = [ 'i2c' ]
 MULTI_CONF = True
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
