@@ -20,7 +20,7 @@ CONFIG_SCHEMA = (
     cv.COMPONENT_SCHEMA
     .extend(i2c.i2c_device_schema(0x26))
     .extend({
-        cv.GenerateID(): cv.declare_id(M5UnitRelay)
+        cv.GenerateID(): cv.declare_id(M5UnitRelayComponent)
     })
 )
 
