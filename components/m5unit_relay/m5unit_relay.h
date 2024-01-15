@@ -21,7 +21,7 @@ protected:
     void set_state(uint8_t channel, bool state);
 
     uint8_t value;
-    uint8_t version;
+    uint8_t firmware;
 };
 
 } //namespace m5unit 
