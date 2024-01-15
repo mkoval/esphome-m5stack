@@ -6,7 +6,7 @@
 namespace esphome {
 namespace m5unit {
 
-class M5UnitRelayChannel;
+class M5UnitRelayComponentSwitch;
 
 class M5UnitRelayComponent 
     : public i2c::I2CDevice
@@ -21,7 +21,7 @@ public:
 protected:
     void write_state(uint8_t channel, bool state);
 
-    friend class M5UnitRelayChannel;
+    friend class M5UnitRelayComponentSwitch;
 
     uint8_t value;
     uint8_t firmware;
