@@ -8,7 +8,7 @@ from esphome.const import (
 
 from .. import (
     CONF_M5UNIT_RELAY_ID,
-    M5UnitRelayComponentComponent,
+    M5UnitRelayComponent,
 )
 
 DEPENDENCIES = ['m5unit_relay']
