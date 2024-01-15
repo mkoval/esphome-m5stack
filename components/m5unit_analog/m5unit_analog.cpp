@@ -1,5 +1,5 @@
 #include "esphome/core/log.h"
-#include "m5unit_relay.h"
+#include "m5unit_analog.h"
 
 namespace esphome {
 namespace m5unit {
@@ -12,7 +12,7 @@ static constexpr uint8_t REG_CAL_CURRENT = 0x20;
 static constexpr uint8_t REG_FIRMWARE_VERSION = 0xFE;
 static constexpr uint8_t REG_I2C_ADDRESS = 0xFF;
 
-M5UnitAnalogComponent::M5UnitAnalogComponent()
+M5UnitAnalog::M5UnitAnalogComponent()
 {
     // Example code multiplies by 100 to convert to milliamps, so multiply by
     // another factor of 1000 to convert to amps.
@@ -23,7 +23,7 @@ M5UnitAnalogComponent::M5UnitAnalogComponent()
     }
 }
 
-void M5UnitAnalogComponent::setup()
+void M5UnitAnalog::setup()
 {
     if (this->read_register(REG_FIRMWARE_VERSION, &this->firmware, 1) != i2c::NO_ERROR) {
         ESP_LOGE(TAG, "failed to read fw version from addr %#04x reg %#04x",
@@ -46,12 +46,12 @@ void M5UnitAnalogComponent::setup()
     }
 }
 
-void M5UnitAnalogComponent::dump_config()
+void M5UnitAnalog::dump_config()
 {
     ESP_LOGCONFIG(TAG, "I2C address: %#04x", this->address_);
 }
 
-void M5UnitAnalogComponent::update()
+void M5UnitAnalog::update()
 {
     std::array<uint8_t, 2 * NUM_CHANNELS> buffer;
     if (this->read_register(REG_CURRENT, buffer.data(), buffer.size()) != i2c::NO_ERROR) {

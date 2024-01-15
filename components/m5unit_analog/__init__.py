@@ -17,9 +17,6 @@ CODEOWNERS = ['@mkoval']
 DEPENDENCIES = ['i2c']
 MULTI_CONF = True
 
-CONF_M5UNIT_ANALOG_ID = 'm5unit_analog_id'
-""" Used by children to refer to the M5UnitAnalogComponent parent. """
-
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
 M5UnitAnalog = m5unit_ns.class_('M5UnitAnalog',
     cg.PollingComponent,

@@ -6,9 +6,7 @@
 namespace esphome {
 namespace m5unit {
 
-class M5UnitRelayComponentSwitch;
-
-class M5UnitAnalogComponent 
+class M5UnitAnalog
     : public i2c::I2CDevice
     , public PollingComponent
 {
