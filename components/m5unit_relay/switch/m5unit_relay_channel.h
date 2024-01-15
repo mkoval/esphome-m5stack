@@ -10,7 +10,7 @@ namespace m5unit {
 class M5UnitRelayComponentSwitch
     : public switch_::Switch
     , public Component
-    , public Parented<M5UnitRelay>
+    , public Parented<M5UnitRelayComponent>
 {
 public:
     void set_channel(uint8_t channel);
