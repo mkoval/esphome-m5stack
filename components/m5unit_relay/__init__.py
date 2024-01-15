@@ -5,18 +5,23 @@ from esphome.const import CONF_ID
 
 CODEOWNERS = ['@mkoval']
 DEPENDENCIES = ['i2c']
+MULTI_CONF = True
 
-DEFAULT_I2C_ADDR = 0x01
+CONF_M5UNIT_RELAY_ID = 'm5unit_relay_id'
+""" Used by children to refer to the M5UnitRelayComponent parent. """
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
-M5UnitRelay = m5unit_ns.class_('M5UnitRelay', cg.Component, i2c.I2CDevice)
+M5UnitRelayComponent = m5unit_ns.class_('M5UnitRelayComponent',
+    cg.Component,
+    i2c.I2CDevice
+)
 
 CONFIG_SCHEMA = (
-    switch.SWITCH_SCHEMA.extend({
+    cv.COMPONENT_SCHEMA
+    .extend(i2c.i2c_device_schema(0x26))
+    .extend({
         cv.GenerateID(): cv.declare_id(M5UnitRelay)
     })
-    .extend(cv.COMPONENT_SCHEMA)
-    .extend(i2c.i2c_device_schema(DEFAULT_I2C_ADDR))
 )
 
 def to_code(config):
