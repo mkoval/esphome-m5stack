@@ -1,5 +1,5 @@
 #include "esphome/core/log.h"
-#include "m5unit_4relay.h"
+#include "m5unit_relay.h"
 
 namespace esphome {
 namespace m5unit {
