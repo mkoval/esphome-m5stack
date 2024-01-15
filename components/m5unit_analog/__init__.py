@@ -13,7 +13,6 @@ from esphome.const import (
     UNIT_AMPERE,
 )
 
-AUTO_LOAD = [ 'sensor' ]
 CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [ 'i2c' ]
 MULTI_CONF = True
