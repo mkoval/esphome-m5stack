@@ -15,7 +15,7 @@ public:
 
     M5UnitRelay();
 
-    uint8_t get_firmware_version() const { return this->firmware; }
+    uint8_t get_firmware_version() const { return this->firmware_; }
 
     void setup() override;
     void dump_config() override;
