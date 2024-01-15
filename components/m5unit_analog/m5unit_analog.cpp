@@ -12,7 +12,7 @@ static constexpr uint8_t REG_CAL_CURRENT = 0x20;
 static constexpr uint8_t REG_FIRMWARE_VERSION = 0xFE;
 static constexpr uint8_t REG_I2C_ADDRESS = 0xFF;
 
-M5UnitAnalog::M5UnitAnalogComponent()
+M5UnitAnalog::M5UnitAnalog()
 {
     // Example code multiplies by 100 to convert to milliamps, so multiply by
     // another factor of 1000 to convert to amps.
