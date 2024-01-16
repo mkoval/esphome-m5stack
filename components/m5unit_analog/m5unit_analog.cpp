@@ -25,7 +25,6 @@ M5UnitAnalog::M5UnitAnalog()
 void M5UnitAnalog::setup()
 {
     ESP_LOGD(TAG, "Setting up...");
-    set_timeout(500);
 
     uint8_t address;
     if (this->read_register(REG_I2C_ADDRESS, &address, 1) != i2c::ERROR_OK) {
