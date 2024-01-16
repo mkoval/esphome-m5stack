@@ -13,6 +13,9 @@ static constexpr uint8_t REG_I2C_ADDRESS = 0xFF;
 M5UnitRelay::M5UnitRelay()
     : state_{0x00}
 {
+    for (size_t channel = 0; channel < NUM_CHANNELS; channel++) {
+        this->channels_[channel] = M5UnitRelayChannel{this, channel};
+    }
 }
 
 void M5UnitRelay::setup()

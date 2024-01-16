@@ -6,6 +6,8 @@
 namespace esphome {
 namespace m5unit {
 
+class M5UnitRelayChannel;
+
 class M5UnitRelay
     : public i2c::I2CDevice
     , public Component 
@@ -16,12 +18,13 @@ public:
     M5UnitRelay();
 
     uint8_t get_firmware_version() const { return this->firmware_; }
+    M5UnitRelayChannel *get_switch(size_t channel) { return &this->chanels_[channel]; }
 
     void setup() override;
     void dump_config() override;
 
 protected:
-    friend class M5UnitChannel;
+    friend class M5UnitRelayChannel;
 
     // Updates internal state. Must be followed by a call to write_state() to take effect.
     void set_channel_state(size_t channel, bool state);
@@ -31,6 +34,7 @@ protected:
 
     uint8_t firmware_;
     uint8_t state_;
+    std::array<M5UnitRelayChannel, NUM_CHANNELS> channels_;
 };
 
 } //namespace m5unit 

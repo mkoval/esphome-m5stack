@@ -6,6 +6,7 @@ from esphome.components import (
 )
 from esphome.const import (
     CONF_ID,
+    CONF_SWITCHES,
 )
 
 CODEOWNERS = [ '@mkoval' ]
@@ -30,6 +31,11 @@ CONFIG_SCHEMA = (
 )
 
 async def to_code(config):
-    var = cg.new_Pvariable(config[CONF_ID])
-    await cg.register_component(var, config)
-    await i2c.register_i2c_device(var, config)
+    main_component = cg.new_Pvariable(config[CONF_ID])
+    await cg.register_component(main_component, config)
+    await i2c.register_i2c_device(main_component, config)
+
+    for channel, switch_config in enumerate(config[CONF_SWITCHES]):
+        switch_var = cg.Pvariable(switch_config[CONF_ID], var.get_switch(channel))
+        await cg.register_component(switch_component, switch_config)
+        await switch.register_switch(switch_component, switch_config)
