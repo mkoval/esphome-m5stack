@@ -51,6 +51,6 @@ async def to_code(config):
 
     for channel, switch_config in enumerate(config[CONF_SWITCHES]):
         switch_var = cg.Pvariable(
-            switch_config[CONF_ID], main_component.get_switch(channel))
+            switch_config[CONF_ID], main_var.get_switch(channel))
         await cg.register_component(switch_var, switch_config)
         await switch.register_switch(switch_var, switch_config)
