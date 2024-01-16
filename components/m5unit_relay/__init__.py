@@ -19,6 +19,11 @@ M5UnitRelay = m5unit_ns.class_('M5UnitRelay',
     i2c.I2CDevice,
 )
 
+M5UnitRelayChannel = m5unit_ns.class_('M5UnitRelayChannel',
+    cg.Component,
+    switch.Switch,
+)
+
 _NUM_CHANNELS = 4
 
 CONFIG_SCHEMA = (
@@ -28,7 +33,12 @@ CONFIG_SCHEMA = (
     ).extend({
         cv.GenerateID(): cv.declare_id(M5UnitRelay),
         cv.Required(CONF_SWITCHES): cv.All(
-            cv.ensure_list(switch.switch_schema()),
+            cv.ensure_list(
+                switch.switch_schema()
+                .extend({
+                    cv.GenerateID(): cv.declare_id(M5UnitRelayChannel)
+                })
+            ),
             cv.Length(min=_NUM_CHANNELS, max=_NUM_CHANNELS),
         )
     })
