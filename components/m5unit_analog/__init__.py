@@ -26,9 +26,9 @@ M5UnitAnalog = m5unit_ns.class_('M5UnitAnalog',
 
 CONFIG_SCHEMA = (
     cv.COMPONENT_SCHEMA
-    .extend(
-        i2c.i2c_device_schema(default_address=0x55)
-    ).extend({
+    .extend(i2c.i2c_device_schema(default_address=0x55))
+    .extend(cv.polling_component_schema("1s"))
+    .extend({
         cv.GenerateID(): cv.declare_id(M5UnitAnalog),
         cv.Required(CONF_SENSORS): cv.All(
             cv.ensure_list(
