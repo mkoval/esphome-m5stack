@@ -23,6 +23,8 @@ M5UnitRelay::M5UnitRelay()
 void M5UnitRelay::setup()
 {
     ESP_LOGD(TAG, "Setting up...");
+    set_timeout(500);
+
     uint8_t address;
     if (this->read_register(REG_I2C_ADDRESS, &address, 1) != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "failed to read I2C address from addr %#04x reg %#04x",
