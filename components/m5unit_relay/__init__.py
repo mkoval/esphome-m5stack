@@ -6,7 +6,6 @@ from esphome.components import (
 )
 from esphome.const import (
     CONF_ID,
-    CONF_SWITCHES
 )
 
 from .channel import to_code as channel_to_code
@@ -14,6 +13,8 @@ from .channel import to_code as channel_to_code
 CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [ 'i2c' ]
 MULTI_CONF = True
+
+CONF_RELAY_ID = 'relay_id'
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
 M5UnitRelay = m5unit_ns.class_('M5UnitRelay',
@@ -29,15 +30,6 @@ CONFIG_SCHEMA = (
         i2c.i2c_device_schema(default_address=0x26)
     ).extend({
         cv.GenerateID(): cv.declare_id(M5UnitRelay),
-        cv.Required(CONF_SWITCHES): cv.All(
-            cv.ensure_list(
-                switch.switch_schema()
-                .extend({
-                    cv.GenerateID(): cv.declare_id(switch.Switch)
-                })
-            ),
-            cv.Length(min=_NUM_CHANNELS, max=_NUM_CHANNELS)
-        )
     })
 )
 
@@ -45,8 +37,3 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
-
-    """
-    for channel, switch_config in enumerate(config[CONF_SWITCHES]):
-        await channel_to_code(parent=var, channel=channel, config=switch_config)
-    """
