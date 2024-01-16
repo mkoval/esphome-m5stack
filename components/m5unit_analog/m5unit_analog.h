@@ -16,7 +16,7 @@ public:
 
     M5UnitAnalog();
 
-    uint8_t get_firmware_version() const { return this->firmware; }
+    uint8_t get_firmware_version() const { return this->firmware_; }
 
     sensor::Sensor *get_sensor(size_t channel) { return &this->sensors_[channel]; }
 
@@ -29,7 +29,7 @@ protected:
         std::array<uint16_t, NUM_CHANNELS> *output);
 
     std::array<sensor::Sensor, NUM_CHANNELS> sensors_;
-    uint8_t firmware;
+    uint8_t firmware_;
 };
 
 } //namespace m5unit 

@@ -40,7 +40,7 @@ void M5UnitAnalog::setup()
     }
     ESP_LOGI(TAG, "Read I2C address: %04fx", address);
 
-    if (this->read_register(REG_FIRMWARE_VERSION, &this->firmware, 1) != i2c::ERROR_OK) {
+    if (this->read_register(REG_FIRMWARE_VERSION, &this->firmware_, 1) != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "failed to read fw version from addr %#04x reg %#04x",
             this->address_, REG_FIRMWARE_VERSION);
         this->mark_failed();
