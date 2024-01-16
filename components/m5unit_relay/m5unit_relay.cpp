@@ -22,6 +22,7 @@ M5UnitRelay::M5UnitRelay()
 
 void M5UnitRelay::setup()
 {
+    ESP_LOGI(TAG, "Setting up...");
     uint8_t address;
     if (this->read_register(REG_I2C_ADDRESS, &address, 1) != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "failed to read I2C address from addr %#04x reg %#04x",
@@ -34,6 +35,7 @@ void M5UnitRelay::setup()
         this->mark_failed();
         return;
     }
+    ESP_LOGI(TAG, "Read I2C address: %04fx", address);
 
     if (this->read_register(REG_FIRMWARE_VERSION, &this->firmware_, 1) != i2c::ERROR_OK) {
         ESP_LOGE(TAG, "failed to read fw version from addr %#04x reg %#04x",
@@ -41,10 +43,13 @@ void M5UnitRelay::setup()
         this->mark_failed();
         return;
     }
+    ESP_LOGI(TAG, "Read firmware version: %#04x", this->firmware_);
 
     // Initialize all channels to "off"
-    state_ = 0x00;
+    this->state_ = 0x00;
     write_state();
+    ESP_LOGI(TAG, "Initialized output to %#04x", this->state_);
+    ESP_LOGI(TAG, "Setup complete!");
 }
 
 void M5UnitRelay::dump_config()
