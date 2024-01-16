@@ -27,9 +27,9 @@ CONFIG_SCHEMA = (
         i2c.i2c_device_schema(default_address=0x26)
     ).extend({
         cv.GenerateID(): cv.declare_id(M5UnitRelay),
-        cv.Required('switches'): cv.All(
+        cv.Required(CONF_SWITCHES): cv.All(
             cv.ensure_list(switch.switch_schema()),
-            cv.Length(min=4, max=4),
+            cv.Length(min=_NUM_CHANNELS, max=_NUM_CHANNELS),
         )
     })
 )
