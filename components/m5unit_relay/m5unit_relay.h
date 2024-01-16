@@ -16,9 +16,10 @@ public:
     static constexpr size_t NUM_CHANNELS = 4;
 
     M5UnitRelay();
+    virtual ~M5UnitRelay() = default;
 
     uint8_t get_firmware_version() const { return this->firmware_; }
-    M5UnitRelayChannel *get_switch(size_t channel) { return &this->chanels_[channel]; }
+    M5UnitRelayChannel *get_switch(size_t channel) { return this->channels_[channel].get(); }
 
     void setup() override;
     void dump_config() override;
@@ -34,7 +35,7 @@ protected:
 
     uint8_t firmware_;
     uint8_t state_;
-    std::array<M5UnitRelayChannel, NUM_CHANNELS> channels_;
+    std::array<std::unique_ptr<M5UnitRelayChannel>, NUM_CHANNELS> channels_;
 };
 
 } //namespace m5unit 

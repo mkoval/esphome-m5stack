@@ -1,3 +1,4 @@
+#include "esphome/core/helpers.h"
 #include "esphome/core/log.h"
 #include "m5unit_relay.h"
 
@@ -14,7 +15,7 @@ M5UnitRelay::M5UnitRelay()
     : state_{0x00}
 {
     for (size_t channel = 0; channel < NUM_CHANNELS; channel++) {
-        this->channels_[channel] = M5UnitRelayChannel{this, channel};
+        this->channels_[channel] = make_unique<M5UnitRelayChannel>(this, channel);
     }
 }
 
