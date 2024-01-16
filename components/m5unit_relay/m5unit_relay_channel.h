@@ -16,6 +16,8 @@ public:
     M5UnitRelayChannel();
     M5UnitRelayChannel(M5UnitRelay *parent, size_t channel);
 
+    float get_setup_priority() const override { return setup_priority::LATE; }
+
 protected:
     void write_state(bool state) override;
 

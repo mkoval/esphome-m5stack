@@ -7,6 +7,7 @@ from esphome.components import (
 from esphome.const import (
     CONF_ID,
     CONF_SENSORS,
+    CONF_UPDATE_INTERVAL,
     DEVICE_CLASS_CURRENT,
     ICON_FLASH,
     STATE_CLASS_MEASUREMENT,
@@ -27,9 +28,12 @@ M5UnitAnalog = m5unit_ns.class_('M5UnitAnalog',
 CONFIG_SCHEMA = (
     cv.COMPONENT_SCHEMA
     .extend(i2c.i2c_device_schema(default_address=0x55))
-    .extend(cv.polling_component_schema("1s"))
+    .extend(cv.polling_component_schema("100ms"))
     .extend({
         cv.GenerateID(): cv.declare_id(M5UnitAnalog),
+        # TODO: Should be handled by polling_component_schema
+        cv.Optional(CONF_UPDATE_INTERVAL, default="100ms"):
+            cv.positive_time_period_milliseconds,
         cv.Required(CONF_SENSORS): cv.All(
             cv.ensure_list(
                 sensor.sensor_schema(

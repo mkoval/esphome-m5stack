@@ -18,6 +18,8 @@ public:
 
     uint8_t get_firmware_version() const { return this->firmware_; }
 
+    float get_setup_priority() const override { return setup_priority::LATE; }
+
     sensor::Sensor *get_sensor(size_t channel) { return &this->sensors_[channel]; }
 
     void setup() override;

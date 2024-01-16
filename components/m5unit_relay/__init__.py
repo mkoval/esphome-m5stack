@@ -7,6 +7,7 @@ from esphome.components import (
 from esphome.const import (
     CONF_ID,
     CONF_SWITCHES,
+    CONF_UPDATE_INTERVAL,
 )
 
 CODEOWNERS = [ '@mkoval' ]
