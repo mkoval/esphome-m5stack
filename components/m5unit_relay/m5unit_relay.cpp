@@ -1,6 +1,7 @@
 #include "esphome/core/helpers.h"
 #include "esphome/core/log.h"
 #include "m5unit_relay.h"
+#include "m5unit_relay_channel.h"
 
 namespace esphome {
 namespace m5unit {
