@@ -45,11 +45,12 @@ CONFIG_SCHEMA = (
 )
 
 async def to_code(config):
-    main_component = cg.new_Pvariable(config[CONF_ID])
-    await cg.register_component(main_component, config)
-    await i2c.register_i2c_device(main_component, config)
+    main_var = cg.new_Pvariable(config[CONF_ID])
+    await cg.register_component(main_var, config)
+    await i2c.register_i2c_device(main_var, config)
 
     for channel, switch_config in enumerate(config[CONF_SWITCHES]):
-        switch_var = cg.Pvariable(switch_config[CONF_ID], var.get_switch(channel))
-        await cg.register_component(switch_component, switch_config)
-        await switch.register_switch(switch_component, switch_config)
+        switch_var = cg.Pvariable(
+            switch_config[CONF_ID], main_component.get_switch(channel))
+        await cg.register_component(switch_var, switch_config)
+        await switch.register_switch(switch_var, switch_config)
