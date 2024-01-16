@@ -6,7 +6,7 @@ from esphome.components import (
 )
 from esphome.const import (
     CONF_ID,
-    CONF_SWITCHES,
+    CONF_SENSORS,
     DEVICE_CLASS_CURRENT,
     ICON_FLASH,
     STATE_CLASS_MEASUREMENT,
@@ -30,7 +30,7 @@ CONFIG_SCHEMA = (
         i2c.i2c_device_schema(default_address=0x55)
     ).extend({
         cv.GenerateID(): cv.declare_id(M5UnitAnalog),
-        cv.Required(CONF_SWITCHES): cv.All(
+        cv.Required(CONF_SENSORS): cv.All(
             cv.ensure_list(
                 sensor.sensor_schema(
                     unit_of_measurement=UNIT_AMPERE,
