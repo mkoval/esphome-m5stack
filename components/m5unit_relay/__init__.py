@@ -11,6 +11,7 @@ from esphome.const import (
 
 CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [ 'i2c' ]
+AUTO_LOAD = [ 'switch' ]
 MULTI_CONF = True
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
