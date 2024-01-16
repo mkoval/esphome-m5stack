@@ -2,6 +2,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import switch
 from esphome.const import (
+    CONF_CHANNEL,
     CONF_TYPE,
 )
 
@@ -13,8 +14,6 @@ from .. import (
 AUTO_LOAD = [ 'switch' ]
 DEPENDENCIES = [ 'm5unit_relay' ]
 CODEOWNERS = [ '@mkoval' ]
-
-CONF_CHANNEL = 'channel'
 
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
 M5UnitRelayChannel= m5unit_ns.class_('M5UnitRelayChannel',
@@ -28,7 +27,7 @@ CONFIG_SCHEMA = (
     .extend({
         cv.GenerateID(): cv.declare_id(M5UnitRelayChannel),
         cv.Required(cv.GenerateID(CONF_RELAY_ID)): cv.use_id(M5UnitRelay),
-        cv.Required(CONF_CHANNEL): cv.int_,
+        cv.Required(CONF_CHANNEL): cv.int_range(min=0, max=3),
     })
 )
 

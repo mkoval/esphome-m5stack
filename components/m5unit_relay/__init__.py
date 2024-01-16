@@ -12,8 +12,6 @@ CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [ 'i2c' ]
 MULTI_CONF = True
 
-CONF_RELAY_ID = 'relay_id'
-
 m5unit_ns = cg.esphome_ns.namespace('m5unit')
 M5UnitRelay = m5unit_ns.class_('M5UnitRelay',
     cg.Component,
