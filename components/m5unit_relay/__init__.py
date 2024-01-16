@@ -8,8 +8,6 @@ from esphome.const import (
     CONF_ID,
 )
 
-from .channel import to_code as channel_to_code
-
 CODEOWNERS = [ '@mkoval' ]
 DEPENDENCIES = [ 'i2c' ]
 MULTI_CONF = True
